@@ -1,4 +1,4 @@
-var apiUrl = 'api'
+var apiUrl = './api'
 
 $(document).ready(function () {
     var app = $.spapp({

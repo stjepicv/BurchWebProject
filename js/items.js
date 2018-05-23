@@ -1,4 +1,4 @@
-var imagesUrl = '/data/item-images/'
+var imagesUrl = './data/item-images/'
 
 function loadItems() {
     $.get(apiUrl + '/items', function(items) {
@@ -17,6 +17,13 @@ function loadItems() {
             var itemElement = $(itemTemplate)
             itemElement.find('.item-name').html(item.name)
             itemElement.find('.item-description').html(item.description)
+            
+            if(item.images.length > 0) {
+                itemElement.find('.item-image').attr('src', imagesUrl + item.images[0].filename)
+            } else {
+                itemElement.find('.item-image').parent().remove()
+            }
+
             currentRow.append(itemElement)
         })
 
