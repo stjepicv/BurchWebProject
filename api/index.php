@@ -1,7 +1,7 @@
 <?php
     require 'vendor/autoload.php';
 
-    require_once 'models/User.class.php';
+    require_once 'models/Item.class.php';
 
     Flight::register('pdo', 'PDO', array('mysql:host=localhost;dbname=burch','root',''), 
         function($pdo) {
@@ -10,7 +10,7 @@
         }
     );
     
-    Flight::register('item', 'User', array(Flight::pdo()));
+    Flight::register('item', 'Item', array(Flight::pdo()));
 
     Flight::route('GET /items', function() {
         $items = Flight::item()->getAll();

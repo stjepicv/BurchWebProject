@@ -1,5 +1,5 @@
 <?php
-    class User {
+    class Item {
         private $pdo;
 
         public function __construct($pdo) {
