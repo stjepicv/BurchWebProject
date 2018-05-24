@@ -23,12 +23,17 @@ function loadItems() {
             } else {
                 itemElement.find('.item-image').parent().remove()
             }
-            
-            itemElement.find('.btn-add-cart').data('item-id', item.id)
+
+            itemElement.find('.btn-add-cart').data('item', item)
+            itemElement.find('.btn-add-cart').on('click', function() {
+                var item = $(this).data('item')
+                addToCart(item)
+            })
 
             currentRow.append(itemElement)
         })
 
+        itemsContainer.empty()
         $.each(itemRows, function(rowIndex, row) {
             itemsContainer.append(row)
         })
