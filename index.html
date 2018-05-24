@@ -4,15 +4,19 @@
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/spapp.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="./js/jquery.spapp.min.js"></script>
+
+    <script src="./js/jquery.spapp.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/items.js"></script>
-
+    
     <style>
       /* Remove the navbar's default rounded borders and increase the bottom margin */ 
       .navbar {
@@ -43,7 +47,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -55,11 +59,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Deals</a></li>
-            <li><a href="#">Stores</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#items">Shop Items</a></li>
+            <li><a href="#register">Register</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
@@ -72,9 +73,10 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-9">
-            <main id="spapp" role="main">
-              <section id="view-items" data-load="items.html"></section>
-            </main>
+          <main id="spapp" role="main">
+            <section id="register" data-load="register.html"></section>
+            <section id="items" data-load="items.html"></section>
+          </main>
         </div>
         <div class="col-sm-3">
             <div class="panel panel-primary" id="cart-panel">

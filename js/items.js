@@ -1,7 +1,9 @@
 var imagesUrl = './data/item-images/'
 
 function loadItems() {
+    console.log('load')
     $.get(apiUrl + '/items', function(items) {
+        console.log(items)
         var itemsContainer = $('#items-container')
         var itemTemplate = $('#item-template').html()
 
