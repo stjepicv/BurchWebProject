@@ -15,4 +15,12 @@
                 ':pw_hash' => $pw_hash
             ]);
         }
+
+        public function getByUsername($username) {
+            $sql = 'SELECT * FROM user WHERE username = :username';
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute([':username' => $username]);
+
+            return $statement->fetch();
+        }
     }
