@@ -23,6 +23,8 @@ function loadItems() {
             } else {
                 itemElement.find('.item-image').parent().remove()
             }
+            
+            itemElement.find('.btn-add-cart').data('item-id', item.id)
 
             currentRow.append(itemElement)
         })
