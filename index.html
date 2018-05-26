@@ -15,7 +15,6 @@
 
     <script src="./js/jquery.spapp.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/cart.js"></script>
     <script src="./js/items.js"></script>
     
     <style>
@@ -82,7 +81,13 @@
         <div class="col-sm-3">
             <div class="panel panel-primary" id="cart-panel">
                 <div class="panel-heading">Cart</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                  <ul id="list-cart"></ul>
+                </div>
+                <div class="panel-footer">
+                  <button type="button" class="btn btn-danger" id="button-cart-clear">Clear Cart</button>
+                  <button type="button" class="btn btn-primary" id="button-cart-order">Make Order</button>
+                </div>
             </div>
         </div>
       </div>

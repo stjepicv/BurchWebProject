@@ -18,6 +18,7 @@ $(document).ready(function () {
 
 
     $('#button-login').on('click', submitLogin)
+    $('#button-cart-clear').on('click', clearCart)
 })
 
 
@@ -34,5 +35,27 @@ function submitLogin(event) {
         error: function(error) {
             console.log(error)
         }
+    })
+}
+
+
+/* cart */
+var cartItems = []
+
+function addToCart(item) {
+    cartItems.push(item)
+    reloadCartHtml()
+}
+
+function clearCart() {
+    cartItems = []
+    reloadCartHtml()
+}
+
+function reloadCartHtml() {
+    $('#list-cart').empty()
+    $.each(cartItems, function(index, item) {
+        var par = $('<li>' + item.name + '</li>')
+        $('#list-cart').append(par)
     })
 }
