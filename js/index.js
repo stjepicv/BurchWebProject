@@ -59,3 +59,14 @@ function reloadCartHtml() {
         $('#list-cart').append(par)
     })
 }
+
+
+
+
+
+/* message modal */
+function showMessage(message) {
+    var modal = $('#message-modal')
+    modal.find('p').html(message)
+    modal.modal('show')
+}
