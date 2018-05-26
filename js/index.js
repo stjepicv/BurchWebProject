@@ -22,6 +22,9 @@ $(document).ready(function () {
 })
 
 
+
+
+/* login system */
 var loginData = null
 
 function submitLogin(event) {
@@ -30,7 +33,6 @@ function submitLogin(event) {
         data: $('#login-form').serialize(),
         success: function(response) {
             loginData = response
-            $('#login-modal').modal('hide')
         },
         error: function(error) {
             console.log(error)
@@ -69,4 +71,20 @@ function showMessage(message) {
     var modal = $('#message-modal')
     modal.find('p').html(message)
     modal.modal('show')
+}
+
+function showQuestion(question, callback) {
+    var modal = $('question-modal')
+    modal.find('p').html(question)
+    var yesCallback = function() {
+        callback(true)
+        modal.find('button-question-yes').off('click', yesCallback)
+    }
+    var noCallback = function() {
+        callback(false)
+        modal.find('button-question-no').off('click', noCallback)
+    }
+
+    modal.find('button-question-yes').on('click', yesCallback)
+    modal.find('button-question-no').on('click', noCallback)
 }
