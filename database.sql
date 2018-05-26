@@ -30,3 +30,23 @@ CREATE TABLE user(
 
     PRIMARY KEY(id)
 ) ENGINE=InnoDB;
+
+
+CREATE TABLE cart_order(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY(id),
+    FOREIGN KEY(user_id) REFERENCES user(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE order_item(
+    id INT NOT NULL AUTO_INCREMENT,
+    cart_order_id INT NOT NULL,
+    item_id INT NOT NULL,
+
+    PRIMARY KEY(id),
+    FOREIGN KEY(cart_order_id) REFERENCES cart_order(id),
+    FOREIGN KEY(item_id) REFERENCES item(id)
+) ENGINE=InnoDB;
