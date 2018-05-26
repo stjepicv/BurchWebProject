@@ -19,6 +19,7 @@ $(document).ready(function () {
 
     $('#button-login').on('click', submitLogin)
     $('#button-cart-clear').on('click', clearCart)
+    $('#button-cart-order').on('click', makeOrder)
 })
 
 
@@ -62,6 +63,14 @@ function reloadCartHtml() {
     })
 }
 
+function makeOrder() {
+    showQuestion('Are you sure?', function(answer) {
+        if(answer === true) {
+            showMessage('Not yet implemented')
+        }
+    })
+}
+
 
 
 
@@ -74,17 +83,19 @@ function showMessage(message) {
 }
 
 function showQuestion(question, callback) {
-    var modal = $('question-modal')
+    var modal = $('#question-modal')
     modal.find('p').html(question)
     var yesCallback = function() {
         callback(true)
-        modal.find('button-question-yes').off('click', yesCallback)
+        modal.find('#button-question-yes').off('click', yesCallback)
     }
     var noCallback = function() {
         callback(false)
-        modal.find('button-question-no').off('click', noCallback)
+        modal.find('#button-question-no').off('click', noCallback)
     }
 
-    modal.find('button-question-yes').on('click', yesCallback)
-    modal.find('button-question-no').on('click', noCallback)
+    modal.find('#button-question-yes').on('click', yesCallback)
+    modal.find('#button-question-no').on('click', noCallback)
+
+    modal.modal('show')
 }
