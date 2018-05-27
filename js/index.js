@@ -64,13 +64,34 @@ function reloadCartHtml() {
 }
 
 function makeOrder() {
-    showQuestion('Are you sure?', function(answer) {
-        if(answer === true) {
-            showMessage('Not yet implemented')
-        }
-    })
+    if(cartItems.length == 0) {
+        showMessage('Put some items in your cart first')
+    }
+    else if(loginData == null) {
+        showMessage('You have to log in first')
+    }
+    else {
+        showQuestion('Are you sure you want to make this order?', function(answer) {
+            if(answer === true) {
+                $.post({
+                    url: apiUrl + '/order/create',
+                    data: {
+                        'token': loginData.token,
+                        'itemIds': $.map(cartItems, function(item) {
+                            return item.id
+                        })
+                    },
+                    success: function(response) {
+                        showMessage('Order create successfully')
+                    },
+                    error: function(error) {
+                        showMessage('There was an error')
+                    }
+                })
+            }
+        })
+    }
 }
-
 
 
 
