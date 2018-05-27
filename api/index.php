@@ -3,6 +3,7 @@
 
     require_once 'models/Item.class.php';
     require_once 'models/User.class.php';
+    require_once 'models/Order.class.php';
 
     use \Firebase\JWT\JWT;
 
@@ -15,6 +16,7 @@
     
     Flight::register('item', 'Item', array(Flight::pdo()));
     Flight::register('user', 'User', array(Flight::pdo()));
+    Flight::register('order', 'Order', array(Flight::pdo()));
 
 
 
@@ -56,6 +58,54 @@
             $user['token'] = $token;
     
             Flight::json($user);
+        }
+    });
+
+
+
+
+    Flight::route('POST /order/create', function() {
+        $post = Flight::request()->data;
+        $token = $post->token;
+        try {
+            $user = JWT::decode($token, 'test_key', array('HS256'));
+        }
+        catch(Exception $e) {
+            $user = FALSE;
+        }
+
+        if(!$user) {
+            Flight::halt(401);
+        }
+        else {
+            if(!is_array($post->itemIds)) {
+                Flight::halt(400);
+            }
+            else {
+                Flight::order()->create($user->id, $post->itemIds);
+            }
+        }
+    });
+
+
+
+    Flight::route('GET /order', function() {
+        $query = Flight::request()->query;
+        $token = $query->token;
+        
+        try {
+            $user = JWT::decode($token, 'test_key', array('HS256'));
+        }
+        catch(Exception $e) {
+            $user = FALSE;
+        }
+
+        if(!$user) {
+            Flight::halt(401);
+        }
+        else {
+            $orders = Flight::order()->getByUserId($user->id);
+            Flight::json($orders);
         }
     });
 

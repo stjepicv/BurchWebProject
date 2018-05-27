@@ -41,7 +41,7 @@ CREATE TABLE cart_order(
     FOREIGN KEY(user_id) REFERENCES user(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE order_item(
+CREATE TABLE cart_order_item(
     id INT NOT NULL AUTO_INCREMENT,
     cart_order_id INT NOT NULL,
     item_id INT NOT NULL,
