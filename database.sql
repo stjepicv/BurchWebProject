@@ -17,9 +17,24 @@ CREATE TABLE item_image(
 ) ENGINE=InnoDB;
 
 
-INSERT INTO item(name, description, price) VALUES('bread', 'white bread', 1.0);
+INSERT INTO item(name, description, price) VALUES('Bread', 'White bread', 1.0);
 SET @item_id = LAST_INSERT_ID();
-INSERT INTO item_image(item_id, filename) VALUES(@item_id, '350x350.png');
+INSERT INTO item_image(item_id, filename) VALUES(@item_id, 'bread.jpg');
+
+
+INSERT INTO item(name, description, price) VALUES('House', 'Very large house outside town', 40000.0);
+SET @item_id = LAST_INSERT_ID();
+INSERT INTO item_image(item_id, filename) VALUES(@item_id, 'house.jpg');
+
+
+INSERT INTO item(name, description, price) VALUES('T-Shirt', 'Plain white t-shirt', 14.99);
+SET @item_id = LAST_INSERT_ID();
+INSERT INTO item_image(item_id, filename) VALUES(@item_id, 'tshirt.jpg');
+
+
+INSERT INTO item(name, description, price) VALUES('Phone', 'Brand new Nokia 3310 phone', 100.0);
+SET @item_id = LAST_INSERT_ID();
+INSERT INTO item_image(item_id, filename) VALUES(@item_id, 'phone.jpg');
 
 
 CREATE TABLE user(

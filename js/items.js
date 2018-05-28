@@ -17,6 +17,7 @@ $.get(apiUrl + '/items', function(items) {
         var itemElement = $(itemTemplate)
         itemElement.find('.item-name').html(item.name)
         itemElement.find('.item-description').html(item.description)
+        itemElement.find('.item-price').html(item.price)
         
         if(item.images.length > 0) {
             itemElement.find('.item-image').attr('src', imagesUrl + item.images[0].filename)
