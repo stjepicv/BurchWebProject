@@ -20,6 +20,18 @@ $(document).ready(function () {
     $('#button-login').on('click', submitLogin)
     $('#button-cart-clear').on('click', clearCart)
     $('#button-cart-order').on('click', makeOrder)
+
+    
+    $('#button-show-login').on('click', function() {
+        if(loginData == null) {
+            $('#login-modal').modal('show')
+        }
+        else {
+            loginData = null
+            showMessage('You have logged out')
+            $('#button-login-text').html('Login')
+        }
+    })
 })
 
 
@@ -34,6 +46,8 @@ function submitLogin(event) {
         data: $('#login-form').serialize(),
         success: function(response) {
             loginData = response
+            $('#button-login-text').html('Logout')
+            $('#login-modal').modal('hide')
             showMessage('You have logged in successfully')
         },
         error: function(error) {
