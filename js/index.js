@@ -34,9 +34,11 @@ function submitLogin(event) {
         data: $('#login-form').serialize(),
         success: function(response) {
             loginData = response
+            showMessage('You have logged in successfully')
         },
         error: function(error) {
             console.log(error)
+            showMessage('Login was unsuccessfull, please try again')
         }
     })
 }
@@ -82,10 +84,10 @@ function makeOrder() {
                         })
                     },
                     success: function(response) {
-                        showMessage('Order create successfully')
+                        showMessage('Order created successfully')
                     },
                     error: function(error) {
-                        showMessage('There was an error')
+                        showMessage('There was an error while creating the order')
                     }
                 })
             }
