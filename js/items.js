@@ -82,6 +82,7 @@ function reloadCartHtml() {
     $.each(cartItems, function(index, item) {
         var itemElement = $(itemTemplate)
         itemElement.find('.item-name').html(item.name)
+        itemElement.find('.item-price').html(parseFloat(item.price).toFixed(2))
         itemElement.find('.button-remove').data('item-index', index)
         itemElement.find('.button-remove').on('click', function() {
             removeFromCart(index)
