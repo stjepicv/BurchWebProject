@@ -1,4 +1,18 @@
-<div id="items-container"></div>
+<div id="items-container" class="col-sm-9">
+
+</div>
+<div class="col-sm-3">
+    <div class="panel panel-primary" id="cart-panel">
+        <div class="panel-heading">Cart</div>
+        <div class="panel-body">
+          <ul id="list-cart"></ul>
+        </div>
+        <div class="panel-footer">
+          <button type="button" class="btn btn-danger" id="button-cart-clear">Clear Cart</button>
+          <button type="button" class="btn btn-primary" id="button-cart-order">Make Order</button>
+        </div>
+    </div>
+</div>
 
 <template id="item-template">
   <div class="col-sm-4"> 
@@ -15,3 +29,6 @@
       </div>
   </div>
 </template>
+
+
+<script src="./js/items.js"></script>

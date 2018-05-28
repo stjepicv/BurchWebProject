@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="./css/spapp.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     <script src="./js/jquery.spapp.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/items.js"></script>
     
     <style>
       /* Remove the navbar's default rounded borders and increase the bottom margin */ 
@@ -64,6 +63,17 @@
 
     <div class="container">
       <div class="row">
+        <main id="spapp" role="main">
+          <section id="register" data-load="register.html"></section>
+          <section id="items" data-load="items.html"></section>
+        </main>
+      </div>
+    </div>
+
+<!-- 
+  
+    <div class="container">
+      <div class="row">
         <div class="col-sm-9">
           <main id="spapp" role="main">
             <section id="register" data-load="register.html"></section>
@@ -84,6 +94,7 @@
         </div>
       </div>
     </div>
+-->
 
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
