@@ -7,10 +7,7 @@ $(document).ready(function () {
     })
 
     app.route({
-        view: "items",
-        onReady: function() {
-            loadItems()
-        }
+        view: "items"
     })
 
     app.run()

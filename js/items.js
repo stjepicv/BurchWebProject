@@ -1,45 +1,43 @@
 var imagesUrl = './data/item-images/'
 
-function loadItems() {
-    $.get(apiUrl + '/items', function(items) {
-        console.log(items)
-        var itemsContainer = $('#items-container')
-        var itemTemplate = $('#item-template').html()
+$.get(apiUrl + '/items', function(items) {
+    console.log(items)
+    var itemsContainer = $('#items-container')
+    var itemTemplate = $('#item-template').html()
 
-        var currentRow = null
-        var itemRows = []
+    var currentRow = null
+    var itemRows = []
 
-        $.each(items, function(itemIndex, item) {
-            if(itemIndex % 3 == 0) {
-                currentRow = $('<div class="row"></div>')
-                itemRows.push(currentRow)
-            }
+    $.each(items, function(itemIndex, item) {
+        if(itemIndex % 3 == 0) {
+            currentRow = $('<div class="row"></div>')
+            itemRows.push(currentRow)
+        }
 
-            var itemElement = $(itemTemplate)
-            itemElement.find('.item-name').html(item.name)
-            itemElement.find('.item-description').html(item.description)
-            
-            if(item.images.length > 0) {
-                itemElement.find('.item-image').attr('src', imagesUrl + item.images[0].filename)
-            } else {
-                itemElement.find('.item-image').parent().remove()
-            }
+        var itemElement = $(itemTemplate)
+        itemElement.find('.item-name').html(item.name)
+        itemElement.find('.item-description').html(item.description)
+        
+        if(item.images.length > 0) {
+            itemElement.find('.item-image').attr('src', imagesUrl + item.images[0].filename)
+        } else {
+            itemElement.find('.item-image').parent().remove()
+        }
 
-            itemElement.find('.btn-add-cart').data('item', item)
-            itemElement.find('.btn-add-cart').on('click', function() {
-                var item = $(this).data('item')
-                addToCart(item)
-            })
-
-            currentRow.append(itemElement)
+        itemElement.find('.btn-add-cart').data('item', item)
+        itemElement.find('.btn-add-cart').on('click', function() {
+            var item = $(this).data('item')
+            addToCart(item)
         })
 
-        itemsContainer.empty()
-        $.each(itemRows, function(rowIndex, row) {
-            itemsContainer.append(row)
-        })
+        currentRow.append(itemElement)
     })
-}
+
+    itemsContainer.empty()
+    $.each(itemRows, function(rowIndex, row) {
+        itemsContainer.append(row)
+    })
+})
 
 
 
@@ -56,16 +54,36 @@ function addToCart(item) {
     reloadCartHtml()
 }
 
+function removeFromCart(removeIndex) {
+    var newCart = []
+    $.each(cartItems, function(index, oldItem) {
+        if(index != removeIndex) {
+            newCart.push(oldItem)
+        }
+    })
+
+    cartItems = newCart
+    reloadCartHtml()
+}
+
 function clearCart() {
     cartItems = []
     reloadCartHtml()
 }
 
 function reloadCartHtml() {
-    $('#list-cart').empty()
+    var cart = $('#cart-panel .panel-body')
+    cart.empty()
+    var itemTemplate = $('#cart-item-template').html()
+
     $.each(cartItems, function(index, item) {
-        var par = $('<li>' + item.name + '</li>')
-        $('#list-cart').append(par)
+        var itemElement = $(itemTemplate)
+        itemElement.find('.item-name').html(item.name)
+        itemElement.find('.button-remove').data('item-index', index)
+        itemElement.find('.button-remove').on('click', function() {
+            removeFromCart(index)
+        })
+        cart.append(itemElement)
     })
 }
 
