@@ -73,9 +73,11 @@ function clearCart() {
 }
 
 function reloadCartHtml() {
-    var cart = $('#cart-panel .panel-body')
+    var cart = $('#cart-items')
     cart.empty()
     var itemTemplate = $('#cart-item-template').html()
+
+    var total = 0.0
 
     $.each(cartItems, function(index, item) {
         var itemElement = $(itemTemplate)
@@ -85,7 +87,11 @@ function reloadCartHtml() {
             removeFromCart(index)
         })
         cart.append(itemElement)
+
+        total = total + parseFloat(item.price)
     })
+
+    $('#cart-total').html(total.toFixed(2))
 }
 
 function makeOrder() {

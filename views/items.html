@@ -5,6 +5,8 @@
     <div class="panel panel-primary" id="cart-panel">
         <div class="panel-heading">Cart</div>
         <div class="panel-body">
+            <div id="cart-items"></div>
+            <h4>Total: $<span id="cart-total">0</span></h5>
         </div>
         <div class="panel-footer">
           <button type="button" class="btn btn-danger" id="button-cart-clear">Clear Cart</button>
@@ -16,7 +18,7 @@
 <template id="item-template">
   <div class="col-sm-4"> 
       <div class="panel panel-primary">
-          <div class="panel-heading item-name">BLACK FRIDAY DEAL</div>
+          <div class="panel-heading item-name"></div>
           <div class="panel-body">
               <img class="img-responsive item-image" style="width:100%">
               <h3 class="item-name"/>
